@@ -2,6 +2,20 @@
 
 A single-file HTML page for testing detections around a clipboard-to-Windows-Run workflow. The command launches Windows Calculator through PowerShell's `-EncodedCommand`; its decoded content is `Start-Process calc.exe`.
 
+## Calculator command
+
+The page copies this command for pasting into Windows Run:
+
+```powershell
+powershell.exe -NoProfile -EncodedCommand UwB0AGEAcgB0AC0AUAByAG8AYwBlAHMAcwAgAGMAYQBsAGMALgBlAHgAZQA=
+```
+
+The Base64 argument is UTF-16LE encoded and decodes to:
+
+```powershell
+Start-Process calc.exe
+```
+
 ## Run locally
 
 From the repository directory:
