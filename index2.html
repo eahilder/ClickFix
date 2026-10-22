@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Copy and run a command to open Windows Calculator.">
+  <title>Calculator Launch Test - Manual Copy</title>
+  <style>
+    :root { color-scheme: dark; font-family: "Segoe UI", system-ui, sans-serif; color: #edf2fa; background: #0d1119; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 32px 20px; background: radial-gradient(ellipse at 50% 0%, #1b2940 0%, #0d1119 65%); }
+    main { width: min(100%, 600px); }
+    .eyebrow { display: flex; align-items: center; gap: 8px; color: #a4b5ce; font-size: 12px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; margin-bottom: 20px; }
+    .dot { height: 7px; width: 7px; border-radius: 50%; background: #9be2c2; }
+    .card { background: #151d2a; border: 1px solid #2b384d; border-radius: 22px; padding: 36px; box-shadow: 0 24px 80px #0004; }
+    .icon { display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid #466b60; border-radius: 14px; color: #a8edce; background: #223e38; margin-bottom: 24px; }
+    h1 { font-size: clamp(28px, 5vw, 36px); line-height: 1.15; letter-spacing: -.035em; margin: 0 0 14px; }
+    .intro { color: #acbbcf; line-height: 1.65; margin: 0 0 28px; font-size: 15px; }
+    label { display: block; margin-bottom: 10px; font-size: 12px; color: #acbbcf; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; }
+    .command-row { display: flex; align-items: stretch; gap: 10px; }
+    textarea { flex: 1; min-width: 0; width: 100%; font: 14px/1.6 Consolas, monospace; padding: 14px 16px; color: #b2efd3; border: 1px solid #344157; border-radius: 10px; background: #0e1520; resize: vertical; overflow-wrap: anywhere; }
+    button { cursor: pointer; border: 0; border-radius: 10px; padding: 14px 20px; background: #a8edce; color: #102c24; font: 600 14px "Segoe UI", system-ui, sans-serif; }
+    button:hover { background: #c5f9e1; }
+    button:disabled { opacity: .7; cursor: wait; }
+    :focus-visible { outline: 3px solid #9abfff; outline-offset: 4px; }
+    .status { color: #acbbcf; min-height: 40px; line-height: 1.5; font-size: 13px; margin: 10px 0 16px; }
+    .steps { list-style: none; margin: 0; padding: 24px 0 0; border-top: 1px solid #2b384d; display: grid; gap: 20px; counter-reset: step; }
+    .steps li { counter-increment: step; display: flex; gap: 14px; align-items: flex-start; color: #acbbcf; font-size: 14px; line-height: 1.7; }
+    .steps li::before { content: counter(step); flex: 0 0 26px; height: 26px; text-align: center; font: 600 12px/26px "Segoe UI", sans-serif; background: #253247; color: #d4e0f2; border-radius: 50%; }
+    .steps strong { color: #edf2fa; font-weight: 600; }
+    kbd { display: inline-block; border: 1px solid #43516a; border-bottom-width: 2px; border-radius: 5px; padding: 0 6px; font: 12px/1.7 "Segoe UI", sans-serif; color: #e0e9f7; background: #1e293a; }
+    .note { margin: 24px 0 0; color: #9aaac2; font-size: 12px; line-height: 1.7; }
+    .note strong { color: #c0cde0; }
+    footer { text-align: center; margin-top: 20px; font-size: 12px; color: #93a4be; }
+    @media (max-width: 440px) { .card { padding: 25px 20px; } .command-row { flex-direction: column; } }
+    @media (prefers-reduced-motion: no-preference) { button { transition: background .15s; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow"><span class="dot" aria-hidden="true"></span> Calculator launch test</div>
+    <section class="card" aria-labelledby="title">
+      <div class="icon" aria-hidden="true">
+        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="3"/><path d="M8 6h8M8 10h1m3 0h1m3 0h.01M8 14h1m3 0h1m3 0h.01M8 18h1m3 0h1m3 0h.01"/>
+        </svg>
+      </div>
+      <h1 id="title">A copy. A paste. Calculator.</h1>
+      <p class="intro">Click Copy command, then follow the steps below to open Windows Calculator.</p>
+
+      <label for="command">Command to copy</label>
+      <div class="command-row">
+        <textarea id="command" rows="4" readonly spellcheck="false" autocapitalize="off" aria-describedby="status">powershell.exe -NoProfile -EncodedCommand UwB0AGEAcgB0AC0AUAByAG8AYwBlAHMAcwAgAGMAYQBsAGMALgBlAHgAZQA=</textarea>
+        <button id="copy" type="button">Copy command</button>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite">Decoded command: <strong>Start-Process calc.exe</strong></p>
+
+      <ol class="steps">
+        <li><span><strong>Copy the command.</strong><br>Use the Copy command button above to put it on your clipboard.</span></li>
+        <li><span><strong>Open Windows Run.</strong><br>Press <kbd>Win</kbd> + <kbd>R</kbd> on your keyboard.</span></li>
+        <li><span><strong>Paste and launch.</strong><br>Press <kbd>Ctrl</kbd> + <kbd>V</kbd>, check that the command matches the one above, then press <kbd>Enter</kbd>.</span></li>
+      </ol>
+
+      <noscript><p class="note">JavaScript is disabled. Select and copy the command above manually, then follow the steps above.</p></noscript>
+    </section>
+    <footer>Windows required to launch Calculator</footer>
+  </main>
+  <script>
+    'use strict';
+    const field = document.getElementById('command');
+    const command = field.value;
+    const copyButton = document.getElementById('copy');
+    const status = document.getElementById('status');
+
+    async function copyCommand() {
+      if (copyButton.disabled) return;
+      copyButton.disabled = true;
+      status.textContent = 'Copying the command...';
+      try {
+        let copied = false;
+        if (window.isSecureContext && navigator.clipboard?.writeText) {
+          try {
+            await navigator.clipboard.writeText(command);
+            copied = true;
+          } catch {
+            // Try the selection-based fallback when clipboard access is denied.
+          }
+        }
+        if (!copied) {
+          field.focus();
+          field.select();
+          copied = document.execCommand('copy');
+        }
+        if (!copied) throw new Error('Manual copy required');
+        copyButton.textContent = 'Copy again';
+        status.textContent = 'Copied the encoded command. Press Win + R, paste, then press Enter.';
+      } catch {
+        field.focus();
+        field.select();
+        status.textContent = 'Copying is unavailable. Press Ctrl + C to copy the selected command, then follow the steps below.';
+      } finally {
+        copyButton.disabled = false;
+      }
+    }
+
+    copyButton.addEventListener('click', () => copyCommand());
+  </script>
+</body>
+</html>
